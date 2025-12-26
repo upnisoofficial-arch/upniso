@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en" style="height: auto; min-height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPNISO - Creator Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Inter:wght@400;500&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#FFFBF5',
+                        ink: '#3E2723',
+                        cinnamon: '#BD6461',
+                        fire: '#E63946',
+                        apricot: '#F4D1AE',
+                        wave: '#7B9ACC',
+                        gold: '#C5A059'
+                    },
+                    fontFamily: {
+                        header: ['Montserrat', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['Courier Prime', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-paper font-body text-ink" style="height: auto; min-height: 100%;">
+
+    <!-- PAGE 1: LOGIN -->
+    <div id="page-login" class="page-container flex items-center justify-center px-4 py-16">
+        <div class="w-full max-w-md">
+            <div class="text-center mb-12">
+                <h1 class="font-header text-5xl mb-3 tracking-tight">UPNISO</h1>
+                <p class="text-base text-ink opacity-70">A platform built for creators who matter</p>
+            </div>
+            <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-8">
+                <h2 class="font-header text-2xl mb-6">Welcome Back</h2>
+                <form id="loginForm" class="space-y-5">
+                    <div>
+                        <label class="block text-sm mb-2 font-medium">Email Address</label>
+                        <input type="email" id="loginEmail" name="email" required class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors" placeholder="you@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2 font-medium">Password</label>
+                        <input type="password" id="loginPassword" name="password" required class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors" placeholder="Enter password">
+                    </div>
+                    <button type="submit" class="w-full bg-cinnamon text-paper py-3 rounded-xl font-medium hover:opacity-90 transition-opacity">Sign In</button>
+                </form>
+                <div class="mt-6 text-center">
+                    <button onclick="showPage('page-signup')" class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Create an account</button>
+                    <span class="text-sm opacity-50 mx-2">•</span>
+                    <button class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Forgot password?</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: SIGNUP -->
+    <div id="page-signup" class="page-container hidden flex items-center justify-center px-4 py-16">
+        <div class="w-full max-w-md">
+            <div class="text-center mb-12">
+                <h1 class="font-header text-5xl mb-3 tracking-tight">UPNISO</h1>
+                <p class="text-base text-ink opacity-70">Join a platform that values your work</p>
+            </div>
+            <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-8">
+                <h2 class="font-header text-2xl mb-6">Create Account</h2>
+                <form id="signupForm" class="space-y-5">
+                    <div>
+                        <label class="block text-sm mb-2 font-medium">Full Name</label>
+                        <input type="text" id="signupName" name="fullName" required class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors" placeholder="Your name">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2 font-medium">Email Address</label>
+                        <input type="email" id="signupEmail" name="email" required class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors" placeholder="you@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2 font-medium">Username</label>
+                        <input type="text" id="signupUsername" name="username" required class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors" placeholder="@username">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2 font-medium">Password</label>
+                        <input type="password" id="signupPassword" name="password" required minlength="8" class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors" placeholder="Create password">
+                    </div>
+                    <button type="submit" class="w-full bg-cinnamon text-paper py-3 rounded-xl font-medium hover:opacity-90 transition-opacity">Create Account</button>
+                </form>
+                <div class="mt-6 text-center">
+                    <button onclick="showPage('page-login')" class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Already have an account?</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: HOME FEED -->
+    <div id="page-home" class="page-container hidden">
+        <div class="flex">
+            <!-- Sidebar -->
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl bg-cinnamon text-paper font-medium">Home</button>
+                    <button onclick="showPage('page-reels')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Reels</button>
+                    <button onclick="showPage('page-video')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Videos</button>
+                    <button onclick="showPage('page-text')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Discover</button>
+                    <button onclick="showPage('page-create')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Create</button>
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Profile</button>
+                    <button onclick="showPage('page-saved')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Saved</button>
+                    <button onclick="showPage('page-notifications')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Notifications</button>
+                </nav>
+                <div class="p-4 border-t border-ink border-opacity-10">
+                    <button onclick="showPage('page-settings')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Settings</button>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1">
+                <div class="max-w-2xl mx-auto px-6 py-8">
+                    <div class="mb-8">
+                        <h2 class="font-header text-2xl mb-2">Your Feed</h2>
+                        <p class="text-sm opacity-70">Curated content from creators you follow</p>
+                    </div>
+
+                    <!-- Posts will be loaded dynamically from backend -->
+                    <div id="feedContainer" class="space-y-6">
+                        <!-- Post template structure for backend integration -->
+                    </div>
+
+                    <div class="text-center py-8">
+                        <button id="loadMoreBtn" class="bg-apricot border border-ink border-opacity-10 px-6 py-3 rounded-xl hover:border-cinnamon transition-colors">Load More</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 4: REELS FEED -->
+    <div id="page-reels" class="page-container hidden bg-ink">
+        <div class="flex h-screen">
+            <!-- Minimal Sidebar for Reels -->
+            <aside class="w-20 flex flex-col items-center py-6 bg-ink border-r border-paper border-opacity-10">
+                <button onclick="showPage('page-home')" class="w-12 h-12 mb-8 bg-paper bg-opacity-10 rounded-xl flex items-center justify-center hover:bg-opacity-20 transition-all">
+                    <svg class="w-6 h-6 text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                </button>
+                <div class="flex-1 flex flex-col gap-6">
+                    <button class="w-12 h-12 bg-paper bg-opacity-10 rounded-xl flex items-center justify-center hover:bg-opacity-20 transition-all">
+                        <svg class="w-6 h-6 text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                </button>
+                <button class="w-12 h-12 bg-cinnamon rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </button>
+                <button onclick="showPage('page-profile')" class="w-12 h-12 bg-paper bg-opacity-10 rounded-xl flex items-center justify-center hover:bg-opacity-20 transition-all">
+                    <svg class="w-6 h-6 text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                </button>
+            </aside>
+
+            <!-- Reels Container -->
+            <main class="flex-1 relative overflow-hidden">
+                <div id="reelsContainer" class="h-full snap-y snap-mandatory overflow-y-scroll">
+                    <!-- Reel Item -->
+                    <div class="h-screen snap-start relative flex items-center justify-center">
+                        <video id="reelVideo1" class="w-full h-full object-cover" loop muted playsinline>
+                            <source src="" type="video/mp4">
+                        </video>
+                        
+                        <!-- Overlay Controls -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+                        
+                        <!-- Top Info -->
+                        <div class="absolute top-6 left-6 right-24 flex items-center gap-3 pointer-events-auto">
+                            <div class="w-12 h-12 bg-cinnamon rounded-xl"></div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-medium text-paper text-sm">Creator Name</h3>
+                                    <span class="w-4 h-4 bg-paper rounded-full flex items-center justify-center text-ink text-xs">✓</span>
+                                </div>
+                                <p class="text-xs text-paper opacity-70">2 hours ago</p>
+                            </div>
+                            <button class="bg-cinnamon text-paper px-4 py-2 rounded-xl text-sm font-medium hover:opacity-90 transition-opacity">Follow</button>
+                        </div>
+
+                        <!-- Right Side Actions -->
+                        <div class="absolute right-6 bottom-32 flex flex-col gap-6 pointer-events-auto">
+                            <button class="flex flex-col items-center gap-1">
+                                <div class="w-12 h-12 bg-paper bg-opacity-20 rounded-xl flex items-center justify-center hover:bg-opacity-30 transition-all">
+                                    <svg class="w-6 h-6 text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-paper text-xs font-medium">2.4K</span>
+                            </button>
+                            <button onclick="showPage('page-comments')" class="flex flex-col items-center gap-1">
+                                <div class="w-12 h-12 bg-paper bg-opacity-20 rounded-xl flex items-center justify-center hover:bg-opacity-30 transition-all">
+                                    <svg class="w-6 h-6 text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-paper text-xs font-medium">342</span>
+                            </button>
+                            <button onclick="showPage('page-share')" class="flex flex-col items-center gap-1">
+                                <div class="w-12 h-12 bg-paper bg-opacity-20 rounded-xl flex items-center justify-center hover:bg-opacity-30 transition-all">
+                                    <svg class="w-6 h-6 text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-paper text-xs font-medium">Share</span>
+                            </button>
+                            <button class="flex flex-col items-center gap-1">
+                                <div class="w-12 h-12 bg-paper bg-opacity-20 rounded-xl flex items-center justify-center hover:bg-opacity-30 transition-all">
+                                    <svg class="w-6 h-6 text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+
+                        <!-- Bottom Caption -->
+                        <div class="absolute bottom-6 left-6 right-24 pointer-events-auto">
+                            <p class="text-paper text-sm leading-relaxed mb-2">Behind the scenes of my latest project. Creating work that matters takes time and intention.</p>
+                            <div class="flex gap-2 flex-wrap">
+                                <span class="text-cinnamon text-xs">#creative</span>
+                                <span class="text-cinnamon text-xs">#process</span>
+                                <span class="text-cinnamon text-xs">#behindthescenes</span>
+                            </div>
+                        </div>
+
+                        <!-- Play/Pause Button -->
+                        <button onclick="toggleReelPlay()" class="absolute inset-0 flex items-center justify-center pointer-events-auto">
+                            <div id="playIcon" class="w-20 h-20 bg-paper bg-opacity-20 rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                <svg class="w-10 h-10 text-paper" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 5: LONG VIDEO PAGE -->
+    <div id="page-video" class="page-container hidden">
+        <div class="flex">
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Home</button>
+                    <button onclick="showPage('page-reels')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Reels</button>
+                    <button onclick="showPage('page-video')" class="w-full text-left px-4 py-3 rounded-xl bg-cinnamon text-paper font-medium">Videos</button>
+                    <button onclick="showPage('page-text')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Discover</button>
+                    <button onclick="showPage('page-create')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Create</button>
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Profile</button>
+                </nav>
+            </aside>
+
+            <main class="flex-1">
+                <div class="max-w-5xl mx-auto px-6 py-8">
+                    <div class="bg-ink rounded-xl overflow-hidden mb-6">
+                        <video id="longVideo" class="w-full" controls>
+                            <source src="" type="video/mp4">
+                        </video>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <div class="flex-1">
+                            <h1 class="font-header text-3xl mb-4" id="videoTitle">Video Title</h1>
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 bg-cinnamon rounded-xl mr-3"></div>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2">
+                                        <h3 class="font-medium" id="videoCreator">Creator Name</h3>
+                                        <span class="w-4 h-4 bg-black rounded-full flex items-center justify-center text-gold text-xs">✓</span>
+                                    </div>
+                                    <p class="text-sm opacity-70" id="videoFollowers">Followers</p>
+                                </div>
+                                <button class="bg-cinnamon text-paper px-6 py-2 rounded-xl font-medium hover:opacity-90 transition-opacity">Follow</button>
+                            </div>
+                            <p class="leading-relaxed mb-6" id="videoDescription">Video description will be loaded here.</p>
+                            <div class="flex items-center gap-6 text-sm mb-8">
+                                <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                    </svg>
+                                    <span id="videoLikes">Like</span>
+                                </button>
+                                <button onclick="showPage('page-comments')" class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                    </svg>
+                                    <span id="videoComments">Comments</span>
+                                </button>
+                                <button onclick="showPage('page-share')" class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                                    </svg>
+                                    Share
+                                </button>
+                            </div>
+                        </div>
+                        <div class="w-80">
+                            <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-4">
+                                <h3 class="font-medium mb-3">Video Details</h3>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between"><span class="opacity-70">Duration</span><span id="videoDuration">--:--</span></div>
+                                    <div class="flex justify-between"><span class="opacity-70">Published</span><span id="videoPublished">--</span></div>
+                                    <div class="flex justify-between"><span class="opacity-70">Views</span><span id="videoViews">--</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 6: DISCOVER / TEXT FEED (X-STYLE) -->
+    <div id="page-text" class="page-container hidden">
+        <div class="flex">
+            <!-- Sidebar -->
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Home</button>
+                    <button onclick="showPage('page-reels')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Reels</button>
+                    <button onclick="showPage('page-video')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Videos</button>
+                    <button onclick="showPage('page-text')" class="w-full text-left px-4 py-3 rounded-xl bg-cinnamon text-paper font-medium">Discover</button>
+                    <button onclick="showPage('page-create')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Create</button>
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Profile</button>
+                </nav>
+                <div class="p-4 border-t border-ink border-opacity-10">
+                    <button onclick="showPage('page-settings')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Settings</button>
+                </div>
+            </aside>
+
+            <!-- Main Feed -->
+            <main class="flex-1 border-r border-ink border-opacity-10">
+                <div class="max-w-2xl mx-auto">
+                    <!-- Header -->
+                    <div class="sticky top-0 bg-paper bg-opacity-95 backdrop-blur-sm border-b border-ink border-opacity-10 px-6 py-4 z-10">
+                        <h2 class="font-header text-xl">Discover</h2>
+                    </div>
+
+                    <!-- Compose Box -->
+                    <div class="border-b border-ink border-opacity-10 px-6 py-4">
+                        <div class="flex gap-3">
+                            <div class="w-12 h-12 bg-cinnamon rounded-xl flex-shrink-0"></div>
+                            <div class="flex-1">
+                                <textarea id="composeText" class="w-full bg-transparent resize-none focus:outline-none text-lg" rows="3" placeholder="What's on your mind?"></textarea>
+                                <div class="flex items-center justify-between mt-3 pt-3 border-t border-ink border-opacity-10">
+                                    <div class="flex gap-2">
+                                        <button class="w-9 h-9 rounded-xl hover:bg-apricot transition-colors flex items-center justify-center">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="w-9 h-9 rounded-xl hover:bg-apricot transition-colors flex items-center justify-center">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="w-9 h-9 rounded-xl hover:bg-apricot transition-colors flex items-center justify-center">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <button class="bg-cinnamon text-paper px-6 py-2 rounded-xl font-medium hover:opacity-90 transition-opacity">Post</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feed Posts -->
+                    <div id="textFeedContainer">
+                        <!-- Post 1 -->
+                        <article class="border-b border-ink border-opacity-10 px-6 py-4 hover:bg-apricot hover:bg-opacity-30 transition-colors cursor-pointer">
+                            <div class="flex gap-3">
+                                <div class="w-12 h-12 bg-cinnamon rounded-xl flex-shrink-0"></div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-medium">Sarah Chen</h3>
+                                        <span class="w-4 h-4 bg-black rounded-full flex items-center justify-center text-gold text-xs">✓</span>
+                                        <span class="text-sm opacity-50">@sarahchen</span>
+                                        <span class="text-sm opacity-50">·</span>
+                                        <span class="text-sm opacity-50">3h</span>
+                                    </div>
+                                    <p class="leading-relaxed mb-3">Just launched our new design system at work. The process of building a scalable, accessible component library taught me more about design principles than any course ever could. Documentation is key.</p>
+                                    <div class="flex items-center gap-8 text-sm opacity-70">
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                            </svg>
+                                            <span>24</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                            </svg>
+                                            <span>12</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-fire transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                            </svg>
+                                            <span>156</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors ml-auto">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Post 2 with Image -->
+                        <article class="border-b border-ink border-opacity-10 px-6 py-4 hover:bg-apricot hover:bg-opacity-30 transition-colors cursor-pointer">
+                            <div class="flex gap-3">
+                                <div class="w-12 h-12 bg-wave rounded-xl flex-shrink-0"></div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-medium">Marcus Johnson</h3>
+                                        <span class="w-4 h-4 bg-black rounded-full flex items-center justify-center text-gold text-xs">✓</span>
+                                        <span class="text-sm opacity-50">@marcusj</span>
+                                        <span class="text-sm opacity-50">·</span>
+                                        <span class="text-sm opacity-50">5h</span>
+                                    </div>
+                                    <p class="leading-relaxed mb-3">The future of work isn't about working from home or the office. It's about giving people the autonomy to choose what works best for them. Trust and results matter more than location.</p>
+                                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=400&fit=crop" alt="Office workspace" class="w-full rounded-xl mb-3 border border-ink border-opacity-10">
+                                    <div class="flex items-center gap-8 text-sm opacity-70">
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                            </svg>
+                                            <span>89</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                            </svg>
+                                            <span>34</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-fire transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                            </svg>
+                                            <span>423</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors ml-auto">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Post 3 -->
+                        <article class="border-b border-ink border-opacity-10 px-6 py-4 hover:bg-apricot hover:bg-opacity-30 transition-colors cursor-pointer">
+                            <div class="flex gap-3">
+                                <div class="w-12 h-12 bg-fire rounded-xl flex-shrink-0"></div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-medium">Elena Rodriguez</h3>
+                                        <span class="w-4 h-4 bg-black rounded-full flex items-center justify-center text-gold text-xs">✓</span>
+                                        <span class="text-sm opacity-50">@elenarodriguez</span>
+                                        <span class="text-sm opacity-50">·</span>
+                                        <span class="text-sm opacity-50">8h</span>
+                                    </div>
+                                    <p class="leading-relaxed mb-3">Three lessons from building a startup that reached 1M users:<br><br>1. Product-market fit isn't a destination, it's a continuous journey<br>2. Your first 100 users will teach you more than any market research<br>3. Culture compounds faster than code</p>
+                                    <div class="flex items-center gap-8 text-sm opacity-70">
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                            </svg>
+                                            <span>142</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                            </svg>
+                                            <span>67</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-fire transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                            </svg>
+                                            <span>892</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors ml-auto">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Post 4 with Poll -->
+                        <article class="border-b border-ink border-opacity-10 px-6 py-4 hover:bg-apricot hover:bg-opacity-30 transition-colors cursor-pointer">
+                            <div class="flex gap-3">
+                                <div class="w-12 h-12 bg-gold rounded-xl flex-shrink-0"></div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-medium">David Park</h3>
+                                        <span class="w-4 h-4 bg-black rounded-full flex items-center justify-center text-gold text-xs">✓</span>
+                                        <span class="text-sm opacity-50">@davidpark</span>
+                                        <span class="text-sm opacity-50">·</span>
+                                        <span class="text-sm opacity-50">12h</span>
+                                    </div>
+                                    <p class="leading-relaxed mb-3">What's the most important skill for designers in 2024?</p>
+                                    <div class="space-y-2 mb-3">
+                                        <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-3 hover:border-cinnamon transition-colors cursor-pointer">
+                                            <div class="flex items-center justify-between mb-1">
+                                                <span class="text-sm">AI Integration & Prompt Engineering</span>
+                                                <span class="text-sm font-medium">42%</span>
+                                            </div>
+                                            <div class="w-full bg-paper rounded-full h-2">
+                                                <div class="bg-cinnamon h-2 rounded-full" style="width: 42%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-3 hover:border-cinnamon transition-colors cursor-pointer">
+                                            <div class="flex items-center justify-between mb-1">
+                                                <span class="text-sm">Systems Thinking</span>
+                                                <span class="text-sm font-medium">31%</span>
+                                            </div>
+                                            <div class="w-full bg-paper rounded-full h-2">
+                                                <div class="bg-cinnamon h-2 rounded-full" style="width: 31%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-3 hover:border-cinnamon transition-colors cursor-pointer">
+                                            <div class="flex items-center justify-between mb-1">
+                                                <span class="text-sm">Cross-functional Communication</span>
+                                                <span class="text-sm font-medium">27%</span>
+                                            </div>
+                                            <div class="w-full bg-paper rounded-full h-2">
+                                                <div class="bg-cinnamon h-2 rounded-full" style="width: 27%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs opacity-50 mb-3">1,247 votes · Poll ends in 2 days</p>
+                                    <div class="flex items-center gap-8 text-sm opacity-70">
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                            </svg>
+                                            <span>56</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                            </svg>
+                                            <span>23</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-fire transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                            </svg>
+                                            <span>234</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors ml-auto">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Post 5 -->
+                        <article class="border-b border-ink border-opacity-10 px-6 py-4 hover:bg-apricot hover:bg-opacity-30 transition-colors cursor-pointer">
+                            <div class="flex gap-3">
+                                <div class="w-12 h-12 bg-cinnamon rounded-xl flex-shrink-0"></div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-medium">Aisha Patel</h3>
+                                        <span class="w-4 h-4 bg-black rounded-full flex items-center justify-center text-gold text-xs">✓</span>
+                                        <span class="text-sm opacity-50">@aishapatel</span>
+                                        <span class="text-sm opacity-50">·</span>
+                                        <span class="text-sm opacity-50">1d</span>
+                                    </div>
+                                    <p class="leading-relaxed mb-3">Reminder: Your network is not just who you know. It's who knows what you're capable of. Quality over quantity, always.</p>
+                                    <div class="flex items-center gap-8 text-sm opacity-70">
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                            </svg>
+                                            <span>78</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                            </svg>
+                                            <span>45</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-fire transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                            </svg>
+                                            <span>567</span>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="flex items-center gap-2 hover:text-cinnamon transition-colors ml-auto">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar - Trending & Suggestions -->
+            <aside class="w-80 px-6 py-4">
+                <div class="sticky top-4 space-y-6">
+                    <!-- Search -->
+                    <div class="relative">
+                        <input type="text" placeholder="Search" class="w-full pl-12 pr-4 py-3 bg-apricot border border-ink border-opacity-10 rounded-xl focus:outline-none focus:border-cinnamon transition-colors">
+                        <svg class="w-5 h-5 absolute left-4 top-1/2 transform -translate-y-1/2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+
+                    <!-- Trending Topics -->
+                    <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-4">
+                        <h3 class="font-header text-lg mb-4">Trending Now</h3>
+                        <div class="space-y-4">
+                            <div class="cursor-pointer hover:opacity-70 transition-opacity">
+                                <p class="text-xs opacity-50 mb-1">Technology · Trending</p>
+                                <p class="font-medium">#AIDesign</p>
+                                <p class="text-xs opacity-50">12.4K posts</p>
+                            </div>
+                            <div class="cursor-pointer hover:opacity-70 transition-opacity">
+                                <p class="text-xs opacity-50 mb-1">Business · Trending</p>
+                                <p class="font-medium">#RemoteWork</p>
+                                <p class="text-xs opacity-50">8.9K posts</p>
+                            </div>
+                            <div class="cursor-pointer hover:opacity-70 transition-opacity">
+                                <p class="text-xs opacity-50 mb-1">Design · Trending</p>
+                                <p class="font-medium">#UXTrends2024</p>
+                                <p class="text-xs opacity-50">6.2K posts</p>
+                            </div>
+                            <div class="cursor-pointer hover:opacity-70 transition-opacity">
+                                <p class="text-xs opacity-50 mb-1">Startups · Trending</p>
+                                <p class="font-medium">#ProductLaunch</p>
+                                <p class="text-xs opacity-50">4.7K posts</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Who to Follow -->
+                    <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-4">
+                        <h3 class="font-header text-lg mb-4">Who to Follow</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-wave rounded-xl flex-shrink-0"></div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-1">
+                                        <h4 class="font-medium text-sm truncate">Jessica Liu</h4>
+                                        <span class="w-3 h-3 bg-black rounded-full flex items-center justify-center text-gold text-xs">✓</span>
+                                    </div>
+                                    <p class="text-xs opacity-50 truncate">@jessicaliu</p>
+                                </div>
+                                <button class="bg-cinnamon text-paper px-4 py-1.5 rounded-xl text-sm font-medium hover:opacity-90 transition-opacity flex-shrink-0">Follow</button>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-fire rounded-xl flex-shrink-0"></div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-1">
+                                        <h4 class="font-medium text-sm truncate">Ryan Cooper</h4>
+                                        <span class="w-3 h-3 bg-black rounded-full flex items-center justify-center text-gold text-xs">✓</span>
+                                    </div>
+                                    <p class="text-xs opacity-50 truncate">@ryancooper</p>
+                                </div>
+                                <button class="bg-cinnamon text-paper px-4 py-1.5 rounded-xl text-sm font-medium hover:opacity-90 transition-opacity flex-shrink-0">Follow</button>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-gold rounded-xl flex-shrink-0"></div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-1">
+                                        <h4 class="font-medium text-sm truncate">Nina Sharma</h4>
+                                        <span class="w-3 h-3 bg-black rounded-full flex items-center justify-center text-gold text-xs">✓</span>
+                                    </div>
+                                    <p class="text-xs opacity-50 truncate">@ninasharma</p>
+                                </div>
+                                <button class="bg-cinnamon text-paper px-4 py-1.5 rounded-xl text-sm font-medium hover:opacity-90 transition-opacity flex-shrink-0">Follow</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- PAGE 7: POST DETAIL -->
+    <div id="page-post-detail" class="page-container hidden">
+        <div class="flex">
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Home</button>
+                    <button onclick="showPage('page-text')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Discover</button>
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Profile</button>
+                </nav>
+            </aside>
+
+            <main class="flex-1">
+                <div class="max-w-3xl mx-auto px-6 py-8">
+                    <button onclick="showPage('page-home')" class="flex items-center gap-2 text-sm text-cinnamon mb-6 hover:opacity-70 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        Back to Feed
+                    </button>
+                    
+                    <article class="mb-12">
+                        <div class="flex items-center mb-6">
+                            <div class="w-14 h-14 bg-cinnamon rounded-xl mr-4"></div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-medium text-lg" id="postAuthor">Author Name</h3>
+                                    <span class="w-4 h-4 bg-black rounded-full flex items-center justify-center text-gold text-xs">✓</span>
+                                </div>
+                                <p class="text-sm opacity-70" id="postDate">Published date</p>
+                            </div>
+                        </div>
+
+                        <h1 class="font-header text-4xl mb-6 leading-tight" id="postTitle">Post Title</h1>
+                        
+                        <div id="postContent" class="prose prose-lg max-w-none leading-relaxed space-y-4">
+                            <!-- Content will be loaded dynamically -->
+                        </div>
+
+                        <div class="flex items-center gap-6 mt-8 pt-6 border-t border-ink border-opacity-10">
+                            <button class="flex items-center gap-2 bg-cinnamon text-paper px-6 py-2 rounded-xl font-medium hover:opacity-90 transition-opacity">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                                Like
+                            </button>
+                            <button onclick="showPage('page-share')" class="hover:text-cinnamon transition-colors">Share</button>
+                            <button onclick="showPage('page-saved')" class="hover:text-cinnamon transition-colors">Save</button>
+                        </div>
+                    </article>
+
+                    <div class="border-t border-ink border-opacity-10 pt-8">
+                        <h3 class="font-header text-xl mb-6" id="commentCount">Comments</h3>
+                        <button onclick="showPage('page-comments')" class="w-full bg-apricot border border-ink border-opacity-10 rounded-xl p-4 text-left hover:border-cinnamon transition-colors">View all comments</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 8: COMMENTS & REPLIES -->
+    <div id="page-comments" class="page-container hidden">
+        <div class="flex">
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Home</button>
+                    <button onclick="showPage('page-post-detail')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Back to Post</button>
+                </nav>
+            </aside>
+
+            <main class="flex-1">
+                <div class="max-w-3xl mx-auto px-6 py-8">
+                    <button onclick="showPage('page-post-detail')" class="flex items-center gap-2 text-sm text-cinnamon mb-6 hover:opacity-70 transition-opacity">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        Back to Post
+                    </button>
+                    
+                    <h2 class="font-header text-2xl mb-6" id="commentsTitle">Comments</h2>
+
+                    <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-4 mb-6">
+                        <textarea id="commentInput" class="w-full bg-paper border border-ink border-opacity-20 rounded-xl p-4 focus:outline-none focus:border-cinnamon transition-colors resize-none" rows="3" placeholder="Add a thoughtful comment..."></textarea>
+                        <div class="flex justify-end mt-3">
+                            <button id="postCommentBtn" class="bg-cinnamon text-paper px-6 py-2 rounded-xl font-medium hover:opacity-90 transition-opacity">Post Comment</button>
+                        </div>
+                    </div>
+
+                    <div id="commentsContainer" class="space-y-6">
+                        <!-- Comments will be loaded dynamically -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 9: CREATE / UPLOAD -->
+    <div id="page-create" class="page-container hidden">
+        <div class="flex">
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Home</button>
+                    <button onclick="showPage('page-create')" class="w-full text-left px-4 py-3 rounded-xl bg-cinnamon text-paper font-medium">Create</button>
+                    <button onclick="showPage('page-drafts')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Drafts</button>
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Profile</button>
+                </nav>
+            </aside>
+
+            <main class="flex-1">
+                <div class="max-w-4xl mx-auto px-6 py-8">
+                    <h2 class="font-header text-2xl mb-6">Create New Post</h2>
+
+                    <div class="flex gap-3 mb-6">
+                        <button onclick="switchCreateTab('text')" id="tabText" class="px-6 py-2 bg-cinnamon text-paper rounded-xl font-medium">Text</button>
+                        <button onclick="switchCreateTab('image')" id="tabImage" class="px-6 py-2 bg-apricot rounded-xl hover:bg-cinnamon hover:text-paper transition-colors">Image</button>
+                        <button onclick="switchCreateTab('video')" id="tabVideo" class="px-6 py-2 bg-apricot rounded-xl hover:bg-cinnamon hover:text-paper transition-colors">Video</button>
+                        <button onclick="switchCreateTab('reel')" id="tabReel" class="px-6 py-2 bg-apricot rounded-xl hover:bg-cinnamon hover:text-paper transition-colors">Reel</button>
+                    </div>
+
+                    <form id="createForm" class="bg-apricot border border-ink border-opacity-10 rounded-xl p-6">
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">Title</label>
+                            <input type="text" id="createTitle" name="title" required class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors" placeholder="Give your post a compelling title">
+                        </div>
+
+                        <div class="mb-6" id="contentSection">
+                            <label class="block text-sm font-medium mb-2">Content</label>
+                            <textarea id="createContent" name="content" class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors resize-none" rows="12" placeholder="Share your thoughts, ideas, or story..."></textarea>
+                        </div>
+
+                        <div class="mb-6 hidden" id="mediaSection">
+                            <label class="block text-sm font-medium mb-2">Upload Media</label>
+                            <div class="border-2 border-dashed border-ink border-opacity-20 rounded-xl p-8 text-center hover:border-cinnamon transition-colors cursor-pointer">
+                                <input type="file" id="mediaUpload" name="media" accept="image/*,video/*" class="hidden">
+                                <svg class="w-12 h-12 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                </svg>
+                                <p class="text-sm opacity-70">Click to upload or drag and drop</p>
+                                <p class="text-xs opacity-50 mt-1">Max file size: 100MB</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">Tags</label>
+                            <input type="text" id="createTags" name="tags" class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors" placeholder="Add relevant tags (comma separated)">
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button type="button" onclick="saveDraft()" class="px-6 py-3 bg-paper border border-ink border-opacity-20 rounded-xl hover:border-cinnamon transition-colors">Save Draft</button>
+                            <button type="submit" class="flex-1 bg-cinnamon text-paper py-3 rounded-xl font-medium hover:opacity-90 transition-opacity">Publish</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 10: DRAFTS -->
+    <div id="page-drafts" class="page-container hidden">
+        <div class="flex">
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Home</button>
+                    <button onclick="showPage('page-create')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Create</button>
+                    <button onclick="showPage('page-drafts')" class="w-full text-left px-4 py-3 rounded-xl bg-cinnamon text-paper font-medium">Drafts</button>
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Profile</button>
+                </nav>
+            </aside>
+
+            <main class="flex-1">
+                <div class="max-w-4xl mx-auto px-6 py-8">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h2 class="font-header text-2xl mb-2">Your Drafts</h2>
+                            <p class="text-sm opacity-70">Work in progress</p>
+                        </div>
+                        <button onclick="showPage('page-create')" class="bg-cinnamon text-paper px-6 py-2 rounded-xl font-medium hover:opacity-90 transition-opacity">New Draft</button>
+                    </div>
+
+                    <div id="draftsContainer" class="space-y-4">
+                        <!-- Drafts will be loaded dynamically -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 11: SHARE SHEET -->
+    <div id="page-share" class="page-container hidden flex items-center justify-center px-4 py-16">
+        <div class="w-full max-w-md bg-apricot border border-ink border-opacity-10 rounded-xl p-6">
+            <h2 class="font-header text-2xl mb-6">Share Post</h2>
+            
+            <div class="space-y-3 mb-6">
+                <button onclick="copyLink()" class="w-full flex items-center gap-3 px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl hover:border-cinnamon transition-colors">
+                    <svg class="w-10 h-10 p-2 bg-ink rounded-xl text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                    <span>Copy Link</span>
+                </button>
+                <button class="w-full flex items-center gap-3 px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl hover:border-cinnamon transition-colors">
+                    <svg class="w-10 h-10 p-2 bg-wave rounded-xl text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <span>Share via Email</span>
+                </button>
+                <button class="w-full flex items-center gap-3 px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl hover:border-cinnamon transition-colors">
+                    <svg class="w-10 h-10 p-2 bg-cinnamon rounded-xl text-paper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                    </svg>
+                    <span>Share to Feed</span>
+                </button>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-sm font-medium mb-2">Add a note</label>
+                <textarea id="shareNote" class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors resize-none" rows="3" placeholder="Why are you sharing this?"></textarea>
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="showPage('page-home')" class="flex-1 px-6 py-3 bg-paper border border-ink border-opacity-20 rounded-xl hover:border-cinnamon transition-colors">Cancel</button>
+                <button onclick="sharePost()" class="flex-1 bg-cinnamon text-paper py-3 rounded-xl font-medium hover:opacity-90 transition-opacity">Share</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 12: PROFILE -->
+    <div id="page-profile" class="page-container hidden">
+        <div class="flex">
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Home</button>
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl bg-cinnamon text-paper font-medium">Profile</button>
+                    <button onclick="showPage('page-settings')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Settings</button>
+                </nav>
+            </aside>
+
+            <main class="flex-1">
+                <div class="max-w-5xl mx-auto px-6 py-8">
+                    <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-8 mb-8">
+                        <div class="flex items-start gap-6 mb-6">
+                            <div class="w-24 h-24 bg-cinnamon rounded-xl"></div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <h1 class="font-header text-3xl" id="profileName">Your Name</h1>
+                                    <span class="w-5 h-5 bg-black rounded-full flex items-center justify-center text-gold text-sm">✓</span>
+                                </div>
+                                <p class="text-lg mb-3" id="profileTitle">Your Title</p>
+                                <p class="leading-relaxed mb-4" id="profileBio">Your bio will appear here</p>
+                                <div class="flex gap-4">
+                                    <button onclick="showPage('page-edit-profile')" class="bg-cinnamon text-paper px-6 py-2 rounded-xl font-medium hover:opacity-90 transition-opacity">Edit Profile</button>
+                                    <button onclick="showPage('page-share')" class="px-6 py-2 bg-paper border border-ink border-opacity-20 rounded-xl hover:border-cinnamon transition-colors">Share Profile</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-4 gap-4">
+                            <div class="bg-paper rounded-xl p-4 border border-ink border-opacity-10">
+                                <div class="font-mono text-2xl mb-1" id="profilePosts">0</div>
+                                <div class="text-sm opacity-70">Posts</div>
+                            </div>
+                            <div class="bg-paper rounded-xl p-4 border border-ink border-opacity-10">
+                                <div class="font-mono text-2xl mb-1" id="profileFollowers">0</div>
+                                <div class="text-sm opacity-70">Followers</div>
+                            </div>
+                            <div class="bg-paper rounded-xl p-4 border border-ink border-opacity-10">
+                                <div class="font-mono text-2xl mb-1" id="profileFollowing">0</div>
+                                <div class="text-sm opacity-70">Following</div>
+                            </div>
+                            <div class="bg-paper rounded-xl p-4 border border-ink border-opacity-10">
+                                <div class="font-mono text-2xl mb-1" id="profileViews">0</div>
+                                <div class="text-sm opacity-70">Total Views</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="flex gap-3 border-b border-ink border-opacity-10">
+                            <button onclick="switchProfileTab('posts')" id="profileTabPosts" class="px-6 py-3 border-b-2 border-cinnamon font-medium">Posts</button>
+                            <button onclick="switchProfileTab('videos')" id="profileTabVideos" class="px-6 py-3 hover:text-cinnamon transition-colors">Videos</button>
+                            <button onclick="switchProfileTab('reels')" id="profileTabReels" class="px-6 py-3 hover:text-cinnamon transition-colors">Reels</button>
+                        </div>
+                    </div>
+
+                    <div id="profileContentGrid" class="grid grid-cols-3 gap-4">
+                        <!-- Profile content will be loaded dynamically -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 13: EDIT PROFILE -->
+    <div id="page-edit-profile" class="page-container hidden">
+        <div class="flex">
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Profile</button>
+                    <button onclick="showPage('page-edit-profile')" class="w-full text-left px-4 py-3 rounded-xl bg-cinnamon text-paper font-medium">Edit Profile</button>
+                    <button onclick="showPage('page-settings')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Settings</button>
+                </nav>
+            </aside>
+
+            <main class="flex-1">
+                <div class="max-w-3xl mx-auto px-6 py-8">
+                    <h2 class="font-header text-2xl mb-8">Edit Profile</h2>
+
+                    <form id="editProfileForm" class="bg-apricot border border-ink border-opacity-10 rounded-xl p-6">
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">Profile Photo</label>
+                            <div class="flex items-center gap-4">
+                                <div class="w-20 h-20 bg-cinnamon rounded-xl"></div>
+                                <input type="file" id="profilePhotoUpload" accept="image/*" class="hidden">
+                                <button type="button" onclick="document.getElementById('profilePhotoUpload').click()" class="px-6 py-2 bg-paper border border-ink border-opacity-20 rounded-xl hover:border-cinnamon transition-colors">Change Photo</button>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">Full Name</label>
+                            <input type="text" id="editName" name="fullName" required class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors">
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">Username</label>
+                            <input type="text" id="editUsername" name="username" required class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors">
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">Title</label>
+                            <input type="text" id="editTitle" name="title" class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors">
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">Bio</label>
+                            <textarea id="editBio" name="bio" class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors resize-none" rows="4"></textarea>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">Website</label>
+                            <input type="url" id="editWebsite" name="website" class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors">
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2">Location</label>
+                            <input type="text" id="editLocation" name="location" class="w-full px-4 py-3 bg-paper border border-ink border-opacity-20 rounded-xl focus:outline-none focus:border-cinnamon transition-colors">
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button type="button" onclick="showPage('page-profile')" class="px-6 py-3 bg-paper border border-ink border-opacity-20 rounded-xl hover:border-cinnamon transition-colors">Cancel</button>
+                            <button type="submit" class="flex-1 bg-cinnamon text-paper py-3 rounded-xl font-medium hover:opacity-90 transition-opacity">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 14: SAVED / BOOKMARKS -->
+    <div id="page-saved" class="page-container hidden">
+        <div class="flex">
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Home</button>
+                    <button onclick="showPage('page-saved')" class="w-full text-left px-4 py-3 rounded-xl bg-cinnamon text-paper font-medium">Saved</button>
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Profile</button>
+                </nav>
+            </aside>
+
+            <main class="flex-1">
+                <div class="max-w-4xl mx-auto px-6 py-8">
+                    <div class="mb-8">
+                        <h2 class="font-header text-2xl mb-2">Saved Posts</h2>
+                        <p class="text-sm opacity-70">Your personal library of valuable content</p>
+                    </div>
+
+                    <div id="savedContainer" class="space-y-4">
+                        <!-- Saved posts will be loaded dynamically -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 15: NOTIFICATIONS -->
+    <div id="page-notifications" class="page-container hidden">
+        <div class="flex">
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Home</button>
+                    <button onclick="showPage('page-notifications')" class="w-full text-left px-4 py-3 rounded-xl bg-cinnamon text-paper font-medium">Notifications</button>
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Profile</button>
+                </nav>
+            </aside>
+
+            <main class="flex-1">
+                <div class="max-w-3xl mx-auto px-6 py-8">
+                    <div class="flex items-center justify-between mb-8">
+                        <h2 class="font-header text-2xl">Notifications</h2>
+                        <button onclick="markAllRead()" class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Mark all as read</button>
+                    </div>
+
+                    <div id="notificationsContainer" class="space-y-3">
+                        <!-- Notifications will be loaded dynamically -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- PAGE 16: SETTINGS & SAFETY -->
+    <div id="page-settings" class="page-container hidden">
+        <div class="flex">
+            <aside class="w-64 flex flex-col border-r border-ink border-opacity-10 bg-paper">
+                <div class="p-6 border-b border-ink border-opacity-10">
+                    <h1 class="font-header text-3xl tracking-tight">UPNISO</h1>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <button onclick="showPage('page-home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Home</button>
+                    <button onclick="showPage('page-profile')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-apricot transition-colors">Profile</button>
+                    <button onclick="showPage('page-settings')" class="w-full text-left px-4 py-3 rounded-xl bg-cinnamon text-paper font-medium">Settings</button>
+                </nav>
+            </aside>
+
+            <main class="flex-1">
+                <div class="max-w-4xl mx-auto px-6 py-8">
+                    <h2 class="font-header text-2xl mb-8">Settings & Safety</h2>
+
+                    <div class="space-y-6">
+                        <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-6">
+                            <h3 class="font-header text-xl mb-4">Account Settings</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between py-3 border-b border-ink border-opacity-10">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Email Address</h4>
+                                        <p class="text-sm opacity-70" id="settingsEmail">your@email.com</p>
+                                    </div>
+                                    <button class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Change</button>
+                                </div>
+                                <div class="flex items-center justify-between py-3 border-b border-ink border-opacity-10">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Password</h4>
+                                        <p class="text-sm opacity-70">••••••••</p>
+                                    </div>
+                                    <button class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Change</button>
+                                </div>
+                                <div class="flex items-center justify-between py-3">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Two-Factor Authentication</h4>
+                                        <p class="text-sm opacity-70">Add an extra layer of security</p>
+                                    </div>
+                                    <button class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Enable</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-6">
+                            <h3 class="font-header text-xl mb-4">Privacy Settings</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between py-3 border-b border-ink border-opacity-10">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Profile Visibility</h4>
+                                        <p class="text-sm opacity-70">Who can see your profile</p>
+                                    </div>
+                                    <select class="bg-paper border border-ink border-opacity-20 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-cinnamon">
+                                        <option>Everyone</option>
+                                        <option>Followers Only</option>
+                                        <option>Private</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-center justify-between py-3 border-b border-ink border-opacity-10">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Activity Status</h4>
+                                        <p class="text-sm opacity-70">Show when you're active</p>
+                                    </div>
+                                    <label class="relative inline-block w-12 h-6">
+                                        <input type="checkbox" checked class="sr-only peer">
+                                        <div class="w-12 h-6 bg-cinnamon rounded-full peer peer-focus:outline-none transition-colors cursor-pointer"></div>
+                                        <div class="absolute left-1 top-1 bg-paper w-4 h-4 rounded-full transition-transform peer-checked:translate-x-6 cursor-pointer"></div>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-between py-3">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Data Download</h4>
+                                        <p class="text-sm opacity-70">Request a copy of your data</p>
+                                    </div>
+                                    <button class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Request</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-6">
+                            <h3 class="font-header text-xl mb-4">Notification Preferences</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between py-3 border-b border-ink border-opacity-10">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Likes & Comments</h4>
+                                        <p class="text-sm opacity-70">When someone interacts with your posts</p>
+                                    </div>
+                                    <label class="relative inline-block w-12 h-6">
+                                        <input type="checkbox" checked class="sr-only peer">
+                                        <div class="w-12 h-6 bg-cinnamon rounded-full peer peer-focus:outline-none transition-colors cursor-pointer"></div>
+                                        <div class="absolute left-1 top-1 bg-paper w-4 h-4 rounded-full transition-transform peer-checked:translate-x-6 cursor-pointer"></div>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-between py-3 border-b border-ink border-opacity-10">
+                                    <div>
+                                        <h4 class="font-medium mb-1">New Followers</h4>
+                                        <p class="text-sm opacity-70">When someone follows you</p>
+                                    </div>
+                                    <label class="relative inline-block w-12 h-6">
+                                        <input type="checkbox" checked class="sr-only peer">
+                                        <div class="w-12 h-6 bg-cinnamon rounded-full peer peer-focus:outline-none transition-colors cursor-pointer"></div>
+                                        <div class="absolute left-1 top-1 bg-paper w-4 h-4 rounded-full transition-transform peer-checked:translate-x-6 cursor-pointer"></div>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-between py-3">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Platform Updates</h4>
+                                        <p class="text-sm opacity-70">News and feature announcements</p>
+                                    </div>
+                                    <label class="relative inline-block w-12 h-6">
+                                        <input type="checkbox" checked class="sr-only peer">
+                                        <div class="w-12 h-6 bg-cinnamon rounded-full peer peer-focus:outline-none transition-colors cursor-pointer"></div>
+                                        <div class="absolute left-1 top-1 bg-paper w-4 h-4 rounded-full transition-transform peer-checked:translate-x-6 cursor-pointer"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-apricot border border-ink border-opacity-10 rounded-xl p-6">
+                            <h3 class="font-header text-xl mb-4">Safety & Support</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between py-3 border-b border-ink border-opacity-10">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Blocked Accounts</h4>
+                                        <p class="text-sm opacity-70">Manage blocked users</p>
+                                    </div>
+                                    <button class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Manage</button>
+                                </div>
+                                <div class="flex items-center justify-between py-3 border-b border-ink border-opacity-10">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Report a Problem</h4>
+                                        <p class="text-sm opacity-70">Get help with issues</p>
+                                    </div>
+                                    <button class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Report</button>
+                                </div>
+                                <div class="flex items-center justify-between py-3">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Help Center</h4>
+                                        <p class="text-sm opacity-70">Find answers to common questions</p>
+                                    </div>
+                                    <button class="text-sm text-cinnamon hover:opacity-70 transition-opacity">Visit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-apricot border border-fire border-opacity-30 rounded-xl p-6">
+                            <h3 class="font-header text-xl mb-4 text-fire">Account Management</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between py-3 border-b border-ink border-opacity-10">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Deactivate Account</h4>
+                                        <p class="text-sm opacity-70">Temporarily disable your account</p>
+                                    </div>
+                                    <button class="text-sm text-fire hover:opacity-70 transition-opacity">Deactivate</button>
+                                </div>
+                                <div class="flex items-center justify-between py-3">
+                                    <div>
+                                        <h4 class="font-medium mb-1">Delete Account</h4>
+                                        <p class="text-sm opacity-70">Permanently remove your account</p>
+                                    </div>
+                                    <button class="text-sm text-fire hover:opacity-70 transition-opacity">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center py-6">
+                            <button onclick="logout()" class="bg-fire text-paper px-8 py-3 rounded-xl font-medium hover:opacity-90 transition-opacity">Log Out</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page-container').forEach(page => {
+                page.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        // Authentication Functions
+        document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // API call to backend
+            // const response = await fetch('/api/auth/login', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(data)
+            // });
+            
+            // For demo, go to home
+            showPage('page-home');
+        });
+
+        document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // API call to backend
+            // const response = await fetch('/api/auth/signup', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(data)
+            // });
+            
+            // For demo, go to home
+            showPage('page-home');
+        });
+
+        // Create Post Functions
+        function switchCreateTab(type) {
+            const tabs = ['text', 'image', 'video', 'reel'];
+            tabs.forEach(tab => {
+                const btn = document.getElementById(`tab${tab.charAt(0).toUpperCase() + tab.slice(1)}`);
+                if (tab === type) {
+                    btn.classList.add('bg-cinnamon', 'text-paper');
+                    btn.classList.remove('bg-apricot');
+                } else {
+                    btn.classList.remove('bg-cinnamon', 'text-paper');
+                    btn.classList.add('bg-apricot');
+                }
+            });
+
+            const contentSection = document.getElementById('contentSection');
+            const mediaSection = document.getElementById('mediaSection');
+            
+            if (type === 'text') {
+                contentSection.classList.remove('hidden');
+                mediaSection.classList.add('hidden');
+            } else {
+                contentSection.classList.add('hidden');
+                mediaSection.classList.remove('hidden');
+            }
+        }
+
+        document.getElementById('createForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            // API call to backend
+            // const response = await fetch('/api/posts/create', {
+            //     method: 'POST',
+            //     body: formData
+            // });
+            
+            showPage('page-profile');
+        });
+
+        function saveDraft() {
+            // API call to save draft
+            // await fetch('/api/drafts/save', { ... });
+            showPage('page-drafts');
+        }
+
+        // Profile Functions
+        function switchProfileTab(tab) {
+            const tabs = ['posts', 'videos', 'reels'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`profileTab${t.charAt(0).toUpperCase() + t.slice(1)}`);
+                if (t === tab) {
+                    btn.classList.add('border-b-2', 'border-cinnamon', 'font-medium');
+                } else {
+                    btn.classList.remove('border-b-2', 'border-cinnamon', 'font-medium');
+                }
+            });
+            
+            // Load content for selected tab
+            // await fetch(`/api/profile/${tab}`);
+        }
+
+        document.getElementById('editProfileForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            // API call to backend
+            // const response = await fetch('/api/profile/update', {
+            //     method: 'PUT',
+            //     body: formData
+            // });
+            
+            showPage('page-profile');
+        });
+
+        // Reel Functions
+        function toggleReelPlay() {
+            const video = document.getElementById('reelVideo1');
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        // Share Functions
+        function copyLink() {
+            // Copy current post URL to clipboard
+            navigator.clipboard.writeText(window.location.href);
+            alert('Link copied to clipboard!');
+        }
+
+        function sharePost() {
+            const note = document.getElementById('shareNote').value;
+            // API call to share post
+            // await fetch('/api/posts/share', { ... });
+            showPage('page-home');
+        }
+
+        // Notification Functions
+        function markAllRead() {
+            // API call to mark all notifications as read
+            // await fetch('/api/notifications/mark-read', { method: 'POST' });
+        }
+
+        // Logout Function
+        function logout() {
+            // Clear session/token
+            // await fetch('/api/auth/logout', { method: 'POST' });
+            showPage('page-login');
+        }
+
+        // Initialize app
+        showPage('page-login');
+
+        // Firebase Integration Example
+        // import { initializeApp } from 'firebase/app';
+        // import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+        // import { getFirestore, collection, addDoc, getDocs, query, where } from 'firebase/firestore';
+        // import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+        // const firebaseConfig = {
+        //     apiKey: "YOUR_API_KEY",
+        //     authDomain: "YOUR_AUTH_DOMAIN",
+        //     projectId: "YOUR_PROJECT_ID",
+        //     storageBucket: "YOUR_STORAGE_BUCKET",
+        //     messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        //     appId: "YOUR_APP_ID"
+        // };
+
+        // const app = initializeApp(firebaseConfig);
+        // const auth = getAuth(app);
+        // const db = getFirestore(app);
+        // const storage = getStorage(app);
+    </script>
+
+</body>
+</html>
