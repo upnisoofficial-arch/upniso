@@ -1,0 +1,37 @@
+{
+  "name": "upniso",
+  "version": "1.0.0",
+  "description": "UPNISO React Application",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext js,jsx",
+    "format": "prettier --write src"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0",
+    "axios": "^1.7.7",
+    "framer-motion": "^11.3.28",
+    "tailwindcss": "^3.4.13"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.39",
+    "vite": "^5.4.8",
+    "eslint": "^9.13.0",
+    "eslint-plugin-react": "^7.37.0",
+    "prettier": "^3.3.3"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
